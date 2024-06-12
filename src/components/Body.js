@@ -5,6 +5,7 @@ import '../index.css';
 import { useEffect, useState } from "react";
 import Shimmer from './Shimmer';
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus.js";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
@@ -24,7 +25,7 @@ const Body = () => {
       result.data.cards[4].card.card.gridElements.infoWithStyle.restaurants,
       "CARDS"
     );
-    //Optional Chaining
+    //Optional =
     setListOfRestaurant(
       result?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         .restaurants
@@ -33,6 +34,14 @@ const Body = () => {
       .restaurants);
     // console.log(myrestaurant)
   };
+  const onlineStatus=useOnlineStatus();
+  if(onlineStatus===false)
+    return(
+    <h1>Looks like your're Offline!! Please check your internet connection</h1>)
+    
+
+
+
   // Conditional Rendering  := A rendering on the basis of condition is known as conditional rendering
   // if(listOfRestaurant.length===0){
   //   return <Shimmer/>

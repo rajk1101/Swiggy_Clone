@@ -4,21 +4,14 @@ import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = ({resData}) => {
   // console.log(resData.info,"Data")
-  
-    
-  
     const {
       cloudinaryImageId,
       name,
       cuisines,
       avgRating,
       costForTwo,
-      
     } = resData?.info;
     // console.log(cloudinaryImageId)
-    
-    
-  
     return (
       <div className="res-card" style={{backgroundColor: "#f0f0f0"}}>
         <img
