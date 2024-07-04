@@ -17,11 +17,12 @@ const onlineStatus=useOnlineStatus();
           alt="company_Logo" />
         </div>
         <div className="nav-items">
-          <ul>
+          <ul className="nav">
             <li>OnlineStatus:{onlineStatus ? "✅" :"🔴" }</li>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="contact">Contact Us</Link></li>
+            <li><Link to="/about">AboutUs</Link></li>
+            <li><Link to="/contact">ContactUs</Link></li>
+            <li><Link to="/grocery">Grocery</Link></li>
             <li>Cart</li>
             <button  onClick={()=>{
               btnName ==='Login'?
