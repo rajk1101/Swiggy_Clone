@@ -1,45 +1,37 @@
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantmenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = ({ }) => {
     const { resId } = useParams();
     const resInfo = useRestaurantmenu(resId);
-    function checkData(regularData) {
-        const itemCards = [];
-        regularData.forEach((v, k) => {
-            if ('itemCards' in v.card.card) {
-                itemCards.push(v.card.card.itemCards);
-            }
-        });
-        return itemCards;
-    }
+    const [showItems, setShowItems] = useState(false);
+    const [showIndex, setShowIndex] = useState(null);
+
+
+
     const { name, cuisines, costForTwoMessage } = resInfo?.cards?.[2]?.card?.card?.info ?? {};
-    let regularData = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards ?? [];
-    const itemCards = checkData(regularData);
+
+
+    const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c => c?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")         //because of @ we write  like this
+
+
     if (resInfo === null) return <Shimmer />
     return (
-        <div>
-            <h1>{name}</h1>
-            <p>
+        <div className="text-center bg-gray-100">
+            <h1 className="font-bold my-6 text-2xl">{name}</h1>
+            <p className="font-bold text-lg">
                 {cuisines.join(",")}- {costForTwoMessage}
             </p>
-            <h2>Menu</h2>
-            <ul>
-                {
-                    itemCards.map(itemCardData => {
-                        return itemCardData.map((item, index) => {
-                            let info = item.card?.info;
-                            return (
-                                <li key={index}>
-                                    {info.name + "Rs. "}{info.price / 100 || info.defaultPrice / 100}
-                                </li>
-                            )
-                        })
-                    })
-                }
+            {/* Here We need categories Accordian  */}
+            {
+                //this is controlled compoenet
+                categories.map((category, index) => <RestaurantCategory key={index} data={category?.card?.card}
+                    showItems={index === showIndex} setShowIndex={() => { setShowIndex(index === showIndex ? null : index) }} />)
+            }
 
-            </ul>
         </div>
 
     )

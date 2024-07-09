@@ -1,4 +1,4 @@
-import React, { lazy,Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import Header from "./components/Header.js";
@@ -8,19 +8,36 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
 import RestaurantMenu from "./components/RestaurantMenu.js";
+import UserContext from "./utils/UserContext.js";
 // import Grocery from "./components/Grocery.js";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore.js";
+import Cart from "./components/Cart.js";
 
 
 
-const Grocery=lazy(()=>import("./components/Grocery.js"))
-const About=lazy(()=>import("./components/About.js"))
+const Grocery = lazy(() => import("./components/Grocery.js"))
+const About = lazy(() => import("./components/About.js"))
 
 const AppLayout = () => {
+  const [username, setUsername] = useState();
+  useEffect(() => {
+    let data = {
+      name: ""
+    }
+    setUsername(data.name)
+  }, [])
   return (
-    <div className="app">
-      <Header  name={"rajkamal"}/>
-      <Outlet />
-    </div>
+    <Provider store={appStore}>
+
+      <UserContext.Provider value={{ loggedInuser: username, setUsername }}>
+
+        <div className="app">
+          <Header name={"rajkamal"} />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -35,7 +52,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element:<Suspense fallback={<h1>Loading....</h1>}><About /></Suspense>
+        element: <Suspense fallback={<h1>Loading....</h1>}><About /></Suspense>
       },
       {
         path: "/contact",
@@ -44,10 +61,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/grocery",
         element: <Suspense fallback={<h1>Loading....</h1>}><Grocery /></Suspense>
-      }, 
+      },
       {
-        path:"restaurant/:resId",
-        element:<RestaurantMenu/>
+        path: "restaurant/:resId",
+        element: <RestaurantMenu />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       }
 
     ],
