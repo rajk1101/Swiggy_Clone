@@ -46,7 +46,7 @@ const Body = () => {
         <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0">
           <input 
             type="text" 
-            className="border border-solid border-black p-2 mb-2 md:mb-0 md:mr-2" 
+            className="border border-solid border-gray-500 p-2 mb-2 md:mb-0 md:mr-2 rounded-[7px]" 
             value={searchText} 
             onChange={(e) => setSearchText(e.target.value)} 
             placeholder="Search Restaurants" 
@@ -72,10 +72,11 @@ const Body = () => {
             Top Rated Restaurants
           </button>
         </div>
-        <div className="flex flex-col items-center md:flex-row md:items-center">
+        <div className="flex flex-col items-center md:flex-row md:items-center ">
           <label className="mb-2 md:mb-0 md:mr-2">Username:</label>
           <input 
-            className="p-2 bg-gray-100 border border-black rounded-md" 
+            placeholder="username"
+            className="p-2  border border-gray-500 rounded-[7px]" 
             value={loggedInuser} 
             onChange={(e) => setUsername(e.target.value)} 
           />
