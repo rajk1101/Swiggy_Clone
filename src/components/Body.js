@@ -14,7 +14,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const { loggedInuser, setUsername } = useContext(UserContext);
-
+  
+  const onlineStatus = useOnlineStatus();
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7057575&lng=77.2122457&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://thingproxy-760k.onrender.com/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7057575&lng=77.2122457&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const result = await response?.json();
     setListOfRestaurant(
@@ -34,10 +35,9 @@ const Body = () => {
     );
   };
 
-  const onlineStatus = useOnlineStatus();
   if (onlineStatus === false)
     return <h1>Looks like you're Offline!! Please check your internet connection</h1>;
-
+//Conditional
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
   ) : (

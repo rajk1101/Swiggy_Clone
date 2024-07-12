@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import ItemList from "./Itemlist";
 import { clearCart } from "../utils/cartSlice";
+import EmptyCart from "./EmptyCart";
 
 const Cart = () => {
     const cartItems = useSelector((store) => store.cart.items);
@@ -15,16 +16,11 @@ const Cart = () => {
             <h1 className="text-3xl font-bold mb-6 text-center text-pink-500">Your Shopping Cart</h1>
 
             <div className="max-w-xl mx-auto">
-                <button onClick={handleClearCart} className="bg-black text-white px-4 py-2 rounded-lg mb-4 block mx-auto">
-                    Clear Cart
-                </button>
+               
 
-                {cartItems.length === 0 && (
-                    <div className="text-center">
-                        <h2 className="text-xl font-semibold mb-2">Your cart is empty!</h2>
-                        <p className="text-lg">Start adding items to your cart from our store.</p>
-                    </div>
-                )}
+                {cartItems.length === 0 ?<EmptyCart/>: <button onClick={handleClearCart} className="bg-gray-400 text-black px-4 py-2 rounded-lg mb-4 block mx-auto hover:font-bold">
+                    Clear Cart
+                </button>}
 
                 {cartItems.length > 0 && (
                     <div className="border border-gray-300 rounded-lg shadow-lg">

@@ -44,14 +44,14 @@ const Header = () => {
           <li className="p-2 md:p-4 font-serif font-bold"><Link to="/about">About Us</Link></li>
           <li className="p-2 md:p-4 font-serif font-bold"><Link to="/contact">Contact Us</Link></li>
           <li className="p-2 md:p-4 font-serif font-bold"><Link to="/grocery">Grocery</Link></li>
-          <li className="p-2 md:p-4 font-serif font-bold"><Link to="/cart">🛒-{cartItems.length} items</Link></li>
+          <li className="p-2 md:p-4 font-serif font-bold"><Link to="/cart">🛒:{" "}{cartItems.length} items</Link></li>
           <li className="p-2 md:p-4 font-serif font-bold">{loggedInuser}</li>
           <button
             onClick={() => {
               btnName === 'Login' ? setBtnName('Logout') : setBtnName('Login');
               console.log(btnName);
             }}
-            className="px-4 py-2 md:py-0 font-serif bg-pink-300 hover:bg-pink-200 rounded-md w-auto mt-2 md:mt-0"
+            className="px-8 py-2 md:py-0 font-serif bg-pink-300 hover:bg-pink-200 rounded-md w-auto h-8 mt-2 md:mt-0"
           >
             {btnName}
           </button>
