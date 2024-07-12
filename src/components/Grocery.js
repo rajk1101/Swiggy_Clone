@@ -2,8 +2,11 @@ import React from 'react';
 
 const Grocery = () => {
   return (
+    
     <div className="grocery-container p-4 md:p-8 lg:p-12">
+      
       <h1 className="text-3xl font-bold mb-6 text-center">Welcome to Our Online Grocery Store</h1>
+      
       <p className="text-lg mb-8 text-center">
         Explore a wide variety of fresh products, daily essentials, and more. Enjoy the convenience of shopping from home and have your groceries delivered to your doorstep.
       </p>
@@ -56,6 +59,11 @@ const Grocery = () => {
           <p className="text-lg">Use code FIRST20 at checkout. Offer valid for a limited time.</p>
         </div>
       </section>
+      <p>
+                This is our online grocery store and we are currently working to
+                build this store!! Stay tuned for more updates!!!
+            </p>
+      
     </div>
   );
 }

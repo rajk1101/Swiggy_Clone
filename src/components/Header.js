@@ -6,6 +6,8 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 
+import { MdOutlineShoppingCart } from "react-icons/md";
+
 const Header = () => {
   const [btnName, setBtnName] = useState('Login');
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -21,43 +23,56 @@ const Header = () => {
 `;
 
 
-  return (
-    <div className="flex flex-col md:flex-row justify-between bg-pink-100 shadow-2xl m-2 h-auto md:h-32">
-      <div className="flex justify-between items-center w-full md:w-auto p-4 md:p-0">
+  return (<div className="flex flex-col md:flex-row justify-between bg-pink-100 shadow-2xl m-2 h-auto md:h-32">
+    <div className="flex justify-between items-center w-full md:w-auto p-4 md:p-0">
       <img
-                className="h-24 rounded-e-full md:h-32"
-                src="https://miro.medium.com/v2/resize:fit:640/1*Lw9xVsdNuEGqr3PaEI436Q.jpeg"
-                alt="company_Logo"
-            />
-        <button
-          className="md:hidden text-pink-700"
-          onClick={() => setDropdownVisible(!dropdownVisible)}
-        >
-          ☰ Menu
-        </button>
-      </div>
-
-      <div className={`flex-col md:flex md:flex-row items-center w-full md:w-auto ${dropdownVisible ? 'flex' : 'hidden'} md:flex`}>
-        <ul className="flex flex-col md:flex-row p-4 md:p-0 m-4 md:m-0 w-full md:w-auto">
-          {/* <li className="p-2 md:p-4 font-serif">OnlineStatus: {onlineStatus ? "✅" : "🔴"}</li> */}
-          <li className="p-2 md:p-4 font-serif font-bold"><Link to="/">Home</Link></li>
-          <li className="p-2 md:p-4 font-serif font-bold"><Link to="/about">About Us</Link></li>
-          <li className="p-2 md:p-4 font-serif font-bold"><Link to="/contact">Contact Us</Link></li>
-          <li className="p-2 md:p-4 font-serif font-bold"><Link to="/grocery">Grocery</Link></li>
-          <li className="p-2 md:p-4 font-serif font-bold"><Link to="/cart">🛒:{" "}{cartItems.length} items</Link></li>
-          <li className="p-2 md:p-4 font-serif font-bold">{loggedInuser}</li>
-          <button
-            onClick={() => {
-              btnName === 'Login' ? setBtnName('Logout') : setBtnName('Login');
-              console.log(btnName);
-            }}
-            className="px-8 py-2 md:py-0 font-serif bg-pink-300 hover:bg-pink-200 rounded-md w-auto h-8 mt-2 md:mt-0"
-          >
-            {btnName}
-          </button>
-        </ul>
-      </div>
+        className="h-24 rounded-e-full md:h-32"
+        src="https://miro.medium.com/v2/resize:fit:640/1*Lw9xVsdNuEGqr3PaEI436Q.jpeg"
+        alt="company_Logo"
+      />
+      <button
+        className="md:hidden text-pink-700"
+        onClick={() => setDropdownVisible(!dropdownVisible)}
+      >
+        ☰ Menu
+      </button>
     </div>
+  
+    <div className={`flex-col md:flex md:flex-row items-center w-full md:w-auto ${dropdownVisible ? 'flex' : 'hidden'} md:flex`}>
+      <ul className="flex flex-col md:flex-row p-4 md:p-0 m-4 md:m-0 w-full md:w-auto">
+        <li className="p-2 md:p-4 font-serif font-bold hover:underline">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="p-2 md:p-4 font-serif font-bold hover:underline">
+          <Link to="/about">About Us</Link>
+        </li>
+        <li className="p-2 md:p-4 font-serif font-bold hover:underline">
+          <Link to="/contact">Contact Us</Link>
+        </li>
+        <li className="p-2 md:p-4 font-serif font-bold hover:underline">
+          <Link to="/grocery">Grocery</Link>
+        </li>
+        <li className="p-2 md:p-4 font-serif font-bold hover:underline flex items-center">
+          <Link to="/cart" className="flex items-center">
+            <MdOutlineShoppingCart className="mr-1" />: {cartItems.length} items
+          </Link>
+        </li>
+        <li className="p-2 md:p-4 font-serif font-bold">
+          {loggedInuser}
+        </li>
+      </ul>
+      <button
+        onClick={() => {
+          btnName === 'Login' ? setBtnName('Logout') : setBtnName('Login');
+          console.log(btnName);
+        }}
+        className="px-8 py-2 md:py-0 font-serif bg-pink-300 hover:bg-pink-200 rounded-md w-auto h-8 mt-2 md:mt-0"
+      >
+        {btnName}
+      </button>
+    </div>
+  </div>
+  
   );
 };
 

@@ -19,7 +19,7 @@ const RestaurantCard = ({resData}) => {
     return (
       <div style={{boxShadow: " rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"}} className="m-4 p-4 w-[250px] h-[480px] rounded-md bg-gray-100 hover:bg-gray-200" >
         <img
-          className="rounded-lg"
+          className="rounded-lg h-[230px]  w-[230px]"
           alt="res-logo"
           src={ CDN_URL
              +
@@ -27,7 +27,7 @@ const RestaurantCard = ({resData}) => {
         />
         <h3 className="font-bold font-serif py-4 text-lg">{name}</h3>
         <h4>{cuisines.join(", ")}</h4>
-        <h4>{avgRating} stars</h4>
+        <h4>{avgRating} ⭐</h4>
         <h5>{costForTwo}</h5>
         <h6>Delivery Time:{" "}{resData?.info?.sla?.slaString}</h6>
         {/* <h6>User: {loggedInuser}</h6> */}

@@ -82,7 +82,7 @@ const Body = () => {
           />
         </div>
       </div>
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center mx-10">
         {filteredRestaurant?.map((val) => (
           <Link key={val?.info?.id} to={"/restaurant/" + val?.info?.id}>
             <RestaurantCard resData={val} />
